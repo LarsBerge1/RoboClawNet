@@ -36,11 +36,9 @@ def control_speed(rc, adr, speedM1, speedM2):
 
 def control_gripper(command,gripperLeft,gripperRight):
     if command is True:
-        print('Command is true')
         gripperLeft.write(0)
         gripperRight.write(160)
     else:
-        print('Command is false')
         gripperLeft.write(160)
         gripperRight.write(0)
 
