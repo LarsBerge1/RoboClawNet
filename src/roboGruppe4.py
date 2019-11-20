@@ -4,43 +4,32 @@ from src.roboclaw_3 import Roboclaw
 from pyfirmata import Arduino, util
 
 
-
-
-def readLine(soc):
-    inc = b''
-    message = b''
-    while inc is not b'\n':
-        inc = soc.recv(1)
-        message += inc
-    return message
-
-
-def control_speed(rc, adr, speedM1, speedM2):
+def control_speed(mc, adr, speed_m1, speed_m2):
     # speedM1 = leftMotorSpeed, speedM2 = rightMotorSpeed
-    if speedM1 > 0:
-        rc.ForwardM1(adr, speedM1)
-    elif speedM1 < 0:
-        speedM1 = speedM1 * (-1)
-        rc.BackwardM1(adr, speedM1)
+    if speed_m1 > 0:
+        mc.ForwardM1(adr, speed_m1)
+    elif speed_m1 < 0:
+        speed_m1 = speed_m1 * (-1)
+        mc.BackwardM1(adr, speed_m1)
     else:
-        rc.ForwardM1(adr, 0)
+        mc.ForwardM1(adr, 0)
 
-    if speedM2 > 0:
-        rc.ForwardM2(adr, speedM2)
-    elif speedM2 < 0:
-        speedM2 = speedM2 * (-1)
-        rc.BackwardM2(adr, speedM2)
+    if speed_m2 > 0:
+        mc.ForwardM2(adr, speed_m2)
+    elif speed_m2 < 0:
+        speed_m2 = speed_m2 * (-1)
+        mc.BackwardM2(adr, speed_m2)
     else:
-        rc.ForwardM2(adr, 0)
+        mc.ForwardM2(adr, 0)
 
 
-def control_gripper(command,gripperLeft,gripperRight):
+def control_gripper(command, gripper_left, gripper_right):
     if command is True:
-        gripperLeft.write(0)
-        gripperRight.write(160)
+        gripper_left.write(0)
+        gripper_right.write(160)
     else:
-        gripperLeft.write(160)
-        gripperRight.write(0)
+        gripper_left.write(160)
+        gripper_right.write(0)
 
 
 # Setup the Roboclaw
