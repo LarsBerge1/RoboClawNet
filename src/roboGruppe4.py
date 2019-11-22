@@ -60,7 +60,6 @@ def main():
     subStringREG = 'SUB::REG_OUTPUT\n'
     subStringGripper = 'SUB::GRIPPER_COMMANDS\n'
 
-
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as soc:
         soc.connect((TCP_IP, TCP_PORT))
         soc.settimeout(None)
@@ -92,10 +91,11 @@ def main():
                 print("json.decoder.JSONDecodeError")
                 pass
 
-
     rc.ForwardM1(address, 0)
     rc.ForwardM2(address, 0)
     soc.close()
 
+
 if __name__ == '__main__':
     main()
+
